@@ -1,4 +1,4 @@
-import { zodPropTypes } from "./zod-props";
+import { zodPropTypes } from "./zod-prop-types";
 import { z } from "zod";
 
 // Define your Zod schema

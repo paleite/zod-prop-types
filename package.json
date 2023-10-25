@@ -1,16 +1,16 @@
 {
-  "name": "zod-props",
+  "name": "zod-prop-types",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/zod-props.js",
-      "require": "./dist/zod-props.umd.cjs"
+      "import": "./dist/zod-prop-types.js",
+      "require": "./dist/zod-prop-types.umd.cjs"
     }
   },
-  "main": "./dist/zod-props.umd.cjs",
-  "module": "./dist/zod-props.js",
+  "main": "./dist/zod-prop-types.umd.cjs",
+  "module": "./dist/zod-prop-types.js",
   "files": [
     "dist"
   ],

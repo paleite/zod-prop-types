@@ -8,10 +8,10 @@ export default defineConfig({
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
-      entry: resolve(__dirname, "src/zod-props.tsx"),
+      entry: resolve(__dirname, "src/zod-prop-types.tsx"),
       name: "ZodProps",
       // the proper extensions will be added
-      fileName: "zod-props",
+      fileName: "zod-prop-types",
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

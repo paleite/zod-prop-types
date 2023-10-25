@@ -1,4 +1,24 @@
-# React + TypeScript + Vite
+# zod-prop-types
+
+```tsx
+import { zodPropTypes } from "zod-prop-types";
+import { z } from "zod";
+
+// Define your Zod schema
+const GreetingPropsSchema = z.object({ name: z.string(), age: z.number() });
+
+// Create your component
+const Greeting = ({ name, age }: z.infer<typeof GreetingPropsSchema>) => (
+  <div>{`Hello, ${name}. You are ${age} years old.`}</div>
+);
+
+// Assign transformed Zod schema as propTypes
+Greeting.propTypes = zodPropTypes(GreetingPropsSchema);
+
+export { Greeting };
+```
+
+<!--
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -25,3 +45,5 @@ If you are developing a production application, we recommend updating the config
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+-->
