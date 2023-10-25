@@ -5,7 +5,7 @@ import "./App.css";
 import { MyComponent } from "./MyComponent";
 import { MyComponentWithPropTypes } from "./MyComponentWithPropTypes";
 
-function App() {
+const App = () => {
   const [count, setCount] = useState(0);
 
   return (
@@ -37,16 +37,20 @@ function App() {
             },
           }}
         />
-        <a href="https://vitejs.dev" target="_blank">
+        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://react.dev" target="_blank" rel="noreferrer">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button
+          onClick={() => {
+            setCount((count) => count + 1);
+          }}
+        >
           count is {count}
         </button>
         <p>
@@ -58,6 +62,6 @@ function App() {
       </p>
     </>
   );
-}
+};
 
 export default App;

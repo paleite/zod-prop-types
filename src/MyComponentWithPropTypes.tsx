@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-type MyComponentWithPropTypesProps = {
+interface MyComponentWithPropTypesProps {
   name: string;
   age: number;
   contact?:
@@ -13,7 +13,7 @@ type MyComponentWithPropTypesProps = {
         };
       }
     | undefined;
-};
+}
 
 const MyComponentWithPropTypes: React.FunctionComponent<
   // Your component

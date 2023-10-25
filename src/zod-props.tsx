@@ -1,4 +1,4 @@
-import { z } from "zod";
+import type { z } from "zod";
 
 // This implementation is trying to mimic prop-types as closely as possible.
 const formatMessage = (
@@ -14,9 +14,11 @@ const formatMessage = (
 
   const errorMessage = [
     `Invalid prop \`${propPath}\``,
-    "received" in error ? ` of type \`${error.received}\`` : "",
+    "received" in error && typeof error.received === "string"
+      ? ` of type \`${error.received}\``
+      : "",
     ` supplied to \`${componentName}\``,
-    "expected" in error
+    "expected" in error && typeof error.expected === "string"
       ? `, expected \`${error.expected}\`.`
       : `: ${error.message}`,
   ].join("");
@@ -35,15 +37,17 @@ const validate = <TSchema extends z.ZodSchema>(schema: TSchema) => {
   ) => {
     const result = schema.safeParse(props[propName]);
 
-    if (!result.success) {
-      const message = formatMessage(
-        result.error.errors[0],
-        propName,
-        componentName
-      );
-
-      return new Error(message);
+    if (result.success) {
+      return;
     }
+
+    const message = formatMessage(
+      result.error.errors[0],
+      propName,
+      componentName
+    );
+
+    return new Error(message);
   };
 };
 
