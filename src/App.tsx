@@ -1,14 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { MyComponent } from "./MyComponent";
+import { MyComponentWithPropTypes } from "./MyComponentWithPropTypes";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
       <div>
+        MyComponent:{" "}
+        <MyComponent
+          name="John"
+          age={42}
+          contact={{
+            email: "valid@email.com",
+            phone: "1",
+            postAddress: {
+              street: 1 as unknown as string,
+              number: 2 as unknown as string,
+            },
+          }}
+        />
+        MyComponentWithPropTypes:{" "}
+        <MyComponentWithPropTypes
+          name="John"
+          age={42}
+          contact={{
+            email: "valid@email.com",
+            phone: "1",
+            postAddress: {
+              street: 1 as unknown as string,
+              number: 2 as unknown as string,
+            },
+          }}
+        />
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -29,7 +57,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
