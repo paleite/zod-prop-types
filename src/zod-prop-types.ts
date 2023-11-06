@@ -31,16 +31,9 @@ const formatMessage = (
   return errorMessage;
 };
 
-const validate = <TSchema extends z.ZodSchema>(schema: TSchema) => {
-  if (process.env.NODE_ENV === "production") {
-    return;
-  }
-
-  return (
-    props: Record<string, unknown>,
-    propName: string,
-    componentName: string,
-  ) => {
+const createValidator =
+  <TSchema extends z.ZodSchema>(schema: TSchema) =>
+  (props: Record<string, unknown>, propName: string, componentName: string) => {
     const result = schema.safeParse(props[propName]);
 
     if (result.success) {
@@ -55,16 +48,17 @@ const validate = <TSchema extends z.ZodSchema>(schema: TSchema) => {
 
     return new Error(message);
   };
-};
 
 const transformZodSchema = <TSchema extends z.ZodSchema>(
   InputSchema: z.ZodObject<Record<string, TSchema>>,
 ) =>
-  Object.fromEntries(
-    Object.entries(InputSchema.shape).map(([key, valueSchema]) => [
-      key,
-      validate(valueSchema),
-    ]),
-  );
+  process.env.NODE_ENV === "production"
+    ? undefined
+    : Object.fromEntries(
+        Object.entries(InputSchema.shape).map(([key, valueSchema]) => [
+          key,
+          createValidator(valueSchema),
+        ]),
+      );
 
 export { transformZodSchema as zodPropTypes };
