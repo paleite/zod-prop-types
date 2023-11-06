@@ -1,5 +1,23 @@
 # zod-prop-types
 
+A utility for transforming [Zod](https://github.com/colinhacks/zod) schemas into PropTypes for React components, ensuring type safety at runtime in a user-friendly and developer-friendly way.
+
+[![npm version](https://badge.fury.io/js/zod-prop-types.svg)](https://badge.fury.io/js/zod-prop-types)
+[![Build Status](https://travis-ci.com/paleite/zod-prop-types.svg?branch=master)](https://travis-ci.com/paleite/zod-prop-types)
+[![Coverage Status](https://coveralls.io/repos/github/paleite/zod-prop-types/badge.svg?branch=master)](https://coveralls.io/github/paleite/zod-prop-types?branch=master)
+
+## Installation
+
+```bash
+npm install zod-prop-types
+# or with yarn
+yarn add zod-prop-types
+# or with pnpm
+pnpm add zod-prop-types
+```
+
+## Usage
+
 ```tsx
 import { zodPropTypes } from "zod-prop-types";
 import { z } from "zod";
@@ -18,32 +36,17 @@ Greeting.propTypes = zodPropTypes(GreetingPropsSchema);
 export { Greeting };
 ```
 
-<!--
+## API Reference
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### `zodPropTypes(ZodSchema)`
 
-Currently, two official plugins are available:
+- `ZodSchema`: A Zod schema object.
+- Returns: An object of PropTypes validators for the given Zod schema.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Contributing
 
-## Expanding the ESLint configuration
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## License
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-
--->
+[MIT](LICENSE) © Patrick Eriksson

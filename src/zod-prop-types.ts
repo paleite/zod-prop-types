@@ -4,7 +4,7 @@ import type { z } from "zod";
 const formatMessage = (
   error: z.ZodIssue,
   propName: string,
-  componentName: string
+  componentName: string,
 ) => {
   const propPath =
     propName +
@@ -33,7 +33,7 @@ const validate = <TSchema extends z.ZodSchema>(schema: TSchema) => {
   return (
     props: Record<string, unknown>,
     propName: string,
-    componentName: string
+    componentName: string,
   ) => {
     const result = schema.safeParse(props[propName]);
 
@@ -44,7 +44,7 @@ const validate = <TSchema extends z.ZodSchema>(schema: TSchema) => {
     const message = formatMessage(
       result.error.errors[0],
       propName,
-      componentName
+      componentName,
     );
 
     return new Error(message);
@@ -52,13 +52,13 @@ const validate = <TSchema extends z.ZodSchema>(schema: TSchema) => {
 };
 
 const transformZodSchema = <TSchema extends z.ZodSchema>(
-  InputSchema: z.ZodObject<Record<string, TSchema>>
+  InputSchema: z.ZodObject<Record<string, TSchema>>,
 ) =>
   Object.fromEntries(
     Object.entries(InputSchema.shape).map(([key, valueSchema]) => [
       key,
       validate(valueSchema),
-    ])
+    ]),
   );
 
 export { transformZodSchema as zodPropTypes };
