@@ -35,14 +35,12 @@ const validProps = {
 
 const invalidDate = new Date("not a valid date");
 
-const originalEnv = process.env.NODE_ENV;
 const spy = jest.spyOn(console, "error").mockImplementation(() => {
   return undefined;
 });
 
 describe("zodPropTypes", () => {
   beforeEach(() => {
-    process.env.NODE_ENV = originalEnv;
     spy.mockClear();
   });
 
@@ -125,36 +123,5 @@ describe("zodPropTypes", () => {
 
     // zod's error.message: "Invalid date"
     expect(spy.mock.lastCall?.[2]).toContain("Invalid date");
-  });
-});
-
-describe("asd", () => {
-  beforeAll(() => {
-    // process.env.NODE_ENV = "production";
-    spy.mockClear();
-  });
-
-  it("doesn't log errors when process.env.NODE_ENV === 'production'", () => {
-    const props = { ...validProps, a: true as unknown as string };
-
-    // spy.mockClear();
-
-    const TestComponentProduction: React.FunctionComponent<
-      TestComponentProps
-    > = (props: { a: string; b: number }) => (
-      <div>
-        {props.a} {props.b}
-      </div>
-    );
-    TestComponentProduction.propTypes = zodPropTypes(TestComponentPropsSchema);
-
-    expect(spy).not.toHaveBeenCalled();
-    render(<TestComponentProduction {...props} />);
-    expect(spy).not.toHaveBeenCalled();
-
-    // spy.mockClear();
-    // expect(spy).not.toHaveBeenCalled();
-    // render(<TestComponent {...props} />);
-    // expect(spy).toHaveBeenCalled();
   });
 });

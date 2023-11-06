@@ -3,20 +3,20 @@ import type { z } from "zod";
 // This implementation is trying to mimic prop-types as closely as possible.
 const formatMessage = (
   error: z.ZodIssue,
-  propName: string,
+  rootPropName: string,
   componentName: string,
 ) => {
-  const propPath =
-    propName +
-    error.path
-      .map((p) =>
-        typeof p === "string"
-          ? // nested object
-            `.${p}`
-          : // array
-            `[${p}]`,
-      )
-      .join("");
+  const errorPropPath = error.path
+    .map((p) =>
+      typeof p === "string"
+        ? // nested object
+          `.${p}`
+        : // array
+          `[${p}]`,
+    )
+    .join("");
+
+  const propPath = `${rootPropName}${errorPropPath}`;
 
   const errorMessage = [
     `Invalid prop \`${propPath}\``,
@@ -28,6 +28,7 @@ const formatMessage = (
       ? `, expected \`${error.expected}\`.`
       : `: ${error.message}`,
   ].join("");
+
   return errorMessage;
 };
 
