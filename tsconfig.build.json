@@ -21,7 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true
   },
-  "include": ["src"],
+  "include": ["src/zod-prop-types.ts"],
   "exclude": ["**/*.test.*", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

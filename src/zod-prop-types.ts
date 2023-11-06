@@ -9,7 +9,13 @@ const formatMessage = (
   const propPath =
     propName +
     error.path
-      .map((p) => (typeof p === "string" ? `.${p}` : `[${p}]`))
+      .map((p) =>
+        typeof p === "string"
+          ? // nested object
+            `.${p}`
+          : // array
+            `[${p}]`,
+      )
       .join("");
 
   const errorMessage = [

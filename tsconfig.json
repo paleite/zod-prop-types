@@ -2,7 +2,8 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "rootDir": ".",
-    "types": ["jest"]
+    "types": ["jest"],
+    "esModuleInterop": true
   },
   "include": ["."],
   "exclude": ["dist"]
