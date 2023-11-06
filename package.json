@@ -77,5 +77,8 @@
     "react": "*",
     "react-dom": "*",
     "zod": "*"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
