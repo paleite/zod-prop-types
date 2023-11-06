@@ -1,6 +1,22 @@
 {
   "name": "zod-prop-types",
   "version": "0.0.0",
+  "description": "A utility for transforming Zod schemas into PropTypes for React components",
+  "keywords": [
+    "zod",
+    "react",
+    "prop-types"
+  ],
+  "homepage": "https://github.com/paleite/zod-prop-types#readme",
+  "bugs": {
+    "url": "https://github.com/paleite/zod-prop-types/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paleite/zod-prop-types.git"
+  },
+  "license": "MIT",
+  "author": "Patrick Eriksson <paleite@users.noreply.github.com> (https://github.com/paleite)",
   "type": "module",
   "exports": {
     ".": {
